@@ -22,6 +22,7 @@
     --accent2:#ffb23a;
     --good:#4fd68a;
     --bad:#ff6767;
+    --gold:#ffd45e;
     --radius:18px;
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
@@ -53,11 +54,11 @@
     padding:7px 12px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;
   }
 
-  .tabs{display:flex;gap:8px;margin-bottom:16px;}
+  .tabs{display:flex;gap:6px;margin-bottom:16px;}
   .tab{
-    flex:1;text-align:center;padding:10px 0;border-radius:14px;
+    flex:1;text-align:center;padding:10px 2px;border-radius:14px;
     background:var(--card);border:1px solid var(--line);color:var(--muted);
-    font-size:13px;font-weight:700;cursor:pointer;user-select:none;
+    font-size:12.5px;font-weight:700;cursor:pointer;user-select:none;
     transition:.15s;
   }
   .tab.active{background:var(--accent);color:#1a0d05;border-color:var(--accent);}
@@ -78,25 +79,43 @@
   }
   .day-type{font-size:22px;font-weight:800;margin:2px 0 4px;}
   .day-meta{font-size:13px;color:var(--muted);margin-bottom:14px;}
+  .level-pill{
+    display:inline-block;background:rgba(255,94,58,.15);color:var(--accent2);
+    border:1px solid rgba(255,94,58,.35);padding:4px 10px;border-radius:100px;
+    font-size:12px;font-weight:700;margin-right:6px;margin-bottom:6px;
+  }
+
+  .toggle-row{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
   .bar-toggle{
-    display:flex;align-items:center;gap:9px;margin-top:12px;
+    display:flex;align-items:center;gap:9px;
     background:rgba(255,178,58,.1);border:1px solid rgba(255,178,58,.3);
     border-radius:12px;padding:10px 12px;font-size:13px;font-weight:600;
     color:var(--accent2);cursor:pointer;
   }
-  .bar-toggle input{width:17px;height:17px;accent-color:var(--accent);}
-  .level-pill{
-    display:inline-block;background:rgba(255,94,58,.15);color:var(--accent2);
-    border:1px solid rgba(255,94,58,.35);padding:4px 10px;border-radius:100px;
-    font-size:12px;font-weight:700;margin-right:6px;
+  .bar-toggle.weight{background:rgba(79,214,138,.08);border-color:rgba(79,214,138,.3);color:var(--good);}
+  .bar-toggle input{width:17px;height:17px;accent-color:var(--accent);flex-shrink:0;}
+
+  .suggest-banner{
+    background:linear-gradient(135deg,rgba(255,212,94,.12),rgba(255,94,58,.08));
+    border:1px solid rgba(255,212,94,.35);border-radius:16px;padding:14px;margin-bottom:14px;
   }
+  .suggest-banner .t{font-weight:800;font-size:14px;margin-bottom:4px;color:var(--gold);}
+  .suggest-banner .d{font-size:12.5px;color:var(--muted);margin-bottom:10px;line-height:1.4;}
+  .suggest-banner .btns{display:flex;gap:8px;}
+  .suggest-banner button{
+    flex:1;border:none;border-radius:10px;padding:9px;font-size:12.5px;font-weight:700;cursor:pointer;
+  }
+  .suggest-banner .yes{background:var(--gold);color:#1a0d05;}
+  .suggest-banner .no{background:transparent;border:1px solid var(--line);color:var(--muted);}
 
   .ex{
     background:var(--card2);border:1px solid var(--line);border-radius:14px;
     padding:14px;margin-bottom:10px;
   }
-  .ex-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .ex.advanced{border-color:rgba(255,212,94,.4);}
+  .ex-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
   .ex-name{font-size:15px;font-weight:700;}
+  .ex-name .adv-tag{font-size:10px;color:var(--gold);border:1px solid var(--gold);border-radius:6px;padding:1px 5px;margin-left:6px;vertical-align:middle;}
   .ex-target{font-size:12px;color:var(--muted);margin-top:2px;}
   .sets{display:flex;gap:7px;flex-wrap:wrap;}
   .set-btn{
@@ -107,7 +126,7 @@
   .set-btn.done{background:var(--good);border-color:var(--good);color:#062315;}
   .rest-btn{
     margin-left:auto;border:1px solid var(--line);background:transparent;color:var(--accent2);
-    font-size:12px;font-weight:700;padding:6px 10px;border-radius:10px;cursor:pointer;
+    font-size:12px;font-weight:700;padding:6px 10px;border-radius:10px;cursor:pointer;flex-shrink:0;
   }
 
   .primary-btn{
@@ -133,10 +152,10 @@
   .weight-row{display:flex;gap:10px;align-items:center;}
   .weight-input{
     flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
-    padding:12px;color:var(--text);font-size:15px;font-weight:700;
+    padding:12px;color:var(--text);font-size:15px;font-weight:700;min-width:0;
   }
   .weight-input:focus{outline:none;border-color:var(--accent);}
-  .add-btn{background:var(--accent);color:#1a0d05;border:none;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;}
+  .add-btn{background:var(--accent);color:#1a0d05;border:none;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer;flex-shrink:0;}
 
   .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .stat{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px;}
@@ -160,9 +179,42 @@
     position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
     background:var(--good);color:#062315;font-weight:700;font-size:13px;
     padding:12px 20px;border-radius:100px;box-shadow:0 8px 24px rgba(0,0,0,.4);
-    opacity:0;pointer-events:none;transition:.25s;z-index:60;
+    opacity:0;pointer-events:none;transition:.25s;z-index:60;max-width:90%;text-align:center;
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(-6px);}
+  .toast.gold{background:var(--gold);}
+
+  .meas-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
+  .meas-grid input{
+    background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 6px;
+    color:var(--text);font-size:13px;font-weight:700;text-align:center;width:100%;min-width:0;
+  }
+  .meas-grid label{display:block;font-size:10.5px;color:var(--muted);margin-bottom:5px;text-align:center;}
+
+  .meas-history{margin-top:10px;}
+  .meas-row{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:6px;font-size:12px;padding:8px 0;border-bottom:1px solid var(--line);}
+  .meas-row:first-child{color:var(--muted);font-weight:700;font-size:11px;}
+  .meas-row:last-child{border-bottom:none;}
+
+  .totals-grid{display:flex;flex-direction:column;gap:14px;}
+  .totals-group-title{font-size:12px;color:var(--accent2);font-weight:800;margin-bottom:6px;}
+  .totals-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .total-chip{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px;}
+  .total-chip b{display:block;font-size:17px;}
+  .total-chip span{font-size:11px;color:var(--muted);}
+
+  .ach-grid{display:flex;flex-direction:column;gap:10px;}
+  .ach{
+    display:flex;align-items:center;gap:12px;background:var(--card2);border:1px solid var(--line);
+    border-radius:14px;padding:12px 14px;opacity:.4;
+  }
+  .ach.unlocked{opacity:1;border-color:rgba(255,212,94,.4);background:linear-gradient(135deg,rgba(255,212,94,.08),transparent);}
+  .ach .icon{font-size:24px;width:36px;text-align:center;flex-shrink:0;}
+  .ach .txt b{display:block;font-size:14px;}
+  .ach .txt span{font-size:11.5px;color:var(--muted);}
+  .ach-progress{font-size:12px;color:var(--muted);margin-bottom:12px;}
+
+  .bar-tag{display:inline-block;background:rgba(255,178,58,.15);color:var(--accent2);font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;margin-left:6px;}
 </style>
 </head>
 <body>
@@ -181,15 +233,16 @@
 
   <div class="tabs">
     <div class="tab active" data-screen="today">Сегодня</div>
-    <div class="tab" data-screen="progress">Прогресс</div>
+    <div class="tab" data-screen="body">Тело</div>
+    <div class="tab" data-screen="achievements">Ачивки</div>
     <div class="tab" data-screen="plan">План</div>
   </div>
 
   <!-- TODAY -->
   <section class="screen active" id="screen-today"></section>
 
-  <!-- PROGRESS -->
-  <section class="screen" id="screen-progress">
+  <!-- BODY (weight, measurements, totals, history) -->
+  <section class="screen" id="screen-body">
     <div class="card">
       <div class="card-title">Вес тела</div>
       <div class="weight-row">
@@ -198,12 +251,25 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-title">Динамика</div>
+      <div class="card-title">Динамика веса</div>
       <canvas id="weightChart" height="140"></canvas>
       <div class="note" id="weightNote" style="margin-top:8px;"></div>
     </div>
+
     <div class="card">
-      <div class="card-title">Статистика</div>
+      <div class="card-title">Замеры тела (раз в месяц)</div>
+      <div id="measReminder"></div>
+      <div class="meas-grid">
+        <div><label>Талия, см</label><input type="number" step="0.5" id="measWaist"></div>
+        <div><label>Грудь, см</label><input type="number" step="0.5" id="measChest"></div>
+        <div><label>Руки, см</label><input type="number" step="0.5" id="measArms"></div>
+      </div>
+      <button class="primary-btn" id="addMeasBtn" style="margin-top:0;">Сохранить замеры</button>
+      <div class="meas-history" id="measHistory"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Статистика тренировок</div>
       <div class="stat-grid">
         <div class="stat"><b id="statTotal">0</b><span>тренировок всего</span></div>
         <div class="stat"><b id="statStreak">0</b><span>дней подряд</span></div>
@@ -211,9 +277,24 @@
         <div class="stat"><b id="statCycle">1/7</b><span>день цикла</span></div>
       </div>
     </div>
+
     <div class="card">
-      <div class="card-title">История</div>
+      <div class="card-title">Всего сделано за всё время</div>
+      <div class="totals-grid" id="totalsGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">История тренировок</div>
       <div id="historyList"><div class="empty">Пока пусто — начни первую тренировку</div></div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="screen" id="screen-achievements">
+    <div class="card">
+      <div class="card-title">Ачивки</div>
+      <div class="ach-progress" id="achProgress"></div>
+      <div class="ach-grid" id="achGrid"></div>
     </div>
   </section>
 
@@ -234,73 +315,171 @@
 <script>
 /* ---------------- DATA ---------------- */
 
+// trackKey stays stable even if display switches to the "advanced" variant at max level,
+// so lifetime totals keep counting the same movement family.
 const DAY_TYPES = [
   { key:'push', title:'Грудь и руки', emoji:'💪', desc:'Отжимания и работа на трицепс',
     exercises:[
-      { name:'Отжимания классические', sets:[3,3,3,4], reps:[8,10,10,12], unit:'повт.' },
-      { name:'Отжимания узким хватом', sets:[3,3,3,4], reps:[6,8,10,10], unit:'повт.' },
-      { name:'Отжимания с широкой постановкой рук', sets:[3,3,3,4], reps:[8,10,12,12], unit:'повт.' },
-      { name:'Планка на прямых руках', sets:[3,3,3,3], reps:[20,30,40,50], unit:'сек' },
-      { name:'Отжимания на брусьях', sets:[3,3,3,4], reps:[6,8,10,10], unit:'повт.', bar:true },
+      { name:'Отжимания классические', trackKey:'pushups_classic', sets:[3,3,3,4], reps:[8,10,10,12], unit:'повт.',
+        advanced:{ name:'Отжимания с ногами на возвышении', reps:10 } },
+      { name:'Отжимания узким хватом', trackKey:'pushups_narrow', sets:[3,3,3,4], reps:[6,8,10,10], unit:'повт.',
+        advanced:{ name:'Алмазные отжимания', reps:8 } },
+      { name:'Отжимания с широкой постановкой рук', trackKey:'pushups_wide', sets:[3,3,3,4], reps:[8,10,12,12], unit:'повт.',
+        advanced:{ name:'Арчер-отжимания (акцент на 1 руку)', reps:6 } },
+      { name:'Планка на прямых руках', trackKey:'plank_arms', sets:[3,3,3,3], reps:[20,30,40,50], unit:'сек' },
+      { name:'Отжимания на брусьях', trackKey:'dips_bar', sets:[3,3,3,4], reps:[6,8,10,10], unit:'повт.', bar:true,
+        advanced:{ name:'Отжимания на брусьях с задержкой внизу', reps:8 } },
     ]},
   { key:'legs', title:'Ноги и ягодицы', emoji:'🦵', desc:'Приседания и работа на низ тела',
     exercises:[
-      { name:'Приседания классические', sets:[3,3,4,4], reps:[15,18,18,20], unit:'повт.' },
-      { name:'Выпады на месте (на каждую ногу)', sets:[3,3,3,4], reps:[10,12,14,14], unit:'повт.' },
-      { name:'Приседания сумо', sets:[3,3,3,4], reps:[12,14,16,16], unit:'повт.' },
-      { name:'Подъём на носки', sets:[3,3,3,4], reps:[15,20,25,25], unit:'повт.' },
+      { name:'Приседания классические', trackKey:'squats_classic', sets:[3,3,4,4], reps:[15,18,18,20], unit:'повт.',
+        advanced:{ name:'Пистолетик у опоры (на 1 ногу)', reps:5 } },
+      { name:'Выпады на месте (на каждую ногу)', trackKey:'lunges', sets:[3,3,3,4], reps:[10,12,14,14], unit:'повт.',
+        advanced:{ name:'Болгарские выпады (нога на возвышении)', reps:10 } },
+      { name:'Приседания сумо', trackKey:'squats_sumo', sets:[3,3,3,4], reps:[12,14,16,16], unit:'повт.',
+        advanced:{ name:'Сумо-приседания с паузой 3 сек внизу', reps:12 } },
+      { name:'Подъём на носки', trackKey:'calf_raises', sets:[3,3,3,4], reps:[15,20,25,25], unit:'повт.',
+        advanced:{ name:'Подъём на носки на одной ноге', reps:15 } },
     ]},
   { key:'core', title:'Кор и пресс', emoji:'🔥', desc:'Пресс и стабилизация корпуса',
     exercises:[
-      { name:'Скручивания', sets:[3,3,3,4], reps:[15,18,20,20], unit:'повт.' },
-      { name:'Планка классическая', sets:[3,3,3,3], reps:[30,40,50,60], unit:'сек' },
-      { name:'Подъём ног лёжа', sets:[3,3,3,4], reps:[10,12,15,15], unit:'повт.' },
-      { name:'Русский твист', sets:[3,3,3,4], reps:[16,20,24,24], unit:'повт.' },
+      { name:'Скручивания', trackKey:'situps', sets:[3,3,3,4], reps:[15,18,20,20], unit:'повт.',
+        advanced:{ name:'Велосипед', reps:20 } },
+      { name:'Планка классическая', trackKey:'plank_core', sets:[3,3,3,3], reps:[30,40,50,60], unit:'сек',
+        advanced:{ name:'Планка с поочерёдным подъёмом ног', reps:60 } },
+      { name:'Подъём ног лёжа', trackKey:'leg_raises', sets:[3,3,3,4], reps:[10,12,15,15], unit:'повт.',
+        advanced:{ name:'Подъём ног до угла 90°', reps:12 } },
+      { name:'Русский твист', trackKey:'russian_twist', sets:[3,3,3,4], reps:[16,20,24,24], unit:'повт.',
+        advanced:{ name:'Русский твист с поднятыми ногами', reps:20 } },
     ]},
   { key:'back', title:'Спина и осанка', emoji:'🧍', desc:'Разгибатели спины и осанка',
     exercises:[
-      { name:'Супермен', sets:[3,3,3,4], reps:[12,15,18,18], unit:'повт.' },
-      { name:'Лодочка (удержание)', sets:[3,3,3,3], reps:[20,30,40,50], unit:'сек' },
-      { name:'Обратные отжимания от стула', sets:[3,3,3,4], reps:[8,10,12,12], unit:'повт.' },
-      { name:'Ягодичный мостик', sets:[3,3,3,4], reps:[15,18,20,20], unit:'повт.' },
-      { name:'Подтягивания (широкий или обычный хват)', sets:[3,3,3,4], reps:[3,5,6,8], unit:'повт.', bar:true },
-      { name:'Вис на турнике (удержание)', sets:[3,3,3,3], reps:[15,25,35,45], unit:'сек', bar:true },
+      { name:'Супермен', trackKey:'superman', sets:[3,3,3,4], reps:[12,15,18,18], unit:'повт.',
+        advanced:{ name:'Супермен с задержкой 3 сек', reps:15 } },
+      { name:'Лодочка (удержание)', trackKey:'boat_hold', sets:[3,3,3,3], reps:[20,30,40,50], unit:'сек' },
+      { name:'Обратные отжимания от стула', trackKey:'chair_dips', sets:[3,3,3,4], reps:[8,10,12,12], unit:'повт.',
+        advanced:{ name:'Обратные отжимания, ноги на возвышении', reps:10 } },
+      { name:'Ягодичный мостик', trackKey:'glute_bridge', sets:[3,3,3,4], reps:[15,18,20,20], unit:'повт.',
+        advanced:{ name:'Ягодичный мостик на одной ноге', reps:12 } },
+      { name:'Подтягивания (широкий или обычный хват)', trackKey:'pullups', sets:[3,3,3,4], reps:[3,5,6,8], unit:'повт.', bar:true,
+        advanced:{ name:'Подтягивания с паузой вверху', reps:6 } },
+      { name:'Вис на турнике (удержание)', trackKey:'bar_hang', sets:[3,3,3,3], reps:[15,25,35,45], unit:'сек', bar:true },
     ]},
   { key:'full', title:'Круговая на всё тело', emoji:'⚡', desc:'Кардио + сила, самый интенсивный день',
     exercises:[
-      { name:'Бёрпи', sets:[3,3,3,4], reps:[6,8,10,10], unit:'повт.' },
-      { name:'Приседания с выпрыгиванием', sets:[3,3,3,4], reps:[8,10,12,12], unit:'повт.' },
-      { name:'Скалолаз (альпинист)', sets:[3,3,3,4], reps:[16,20,24,24], unit:'повт.' },
-      { name:'Планка с касанием плеч', sets:[3,3,3,4], reps:[16,20,24,24], unit:'повт.' },
-      { name:'Подъём ног в висе на турнике', sets:[3,3,3,4], reps:[6,8,10,12], unit:'повт.', bar:true },
+      { name:'Бёрпи', trackKey:'burpees', sets:[3,3,3,4], reps:[6,8,10,10], unit:'повт.',
+        advanced:{ name:'Бёрпи с прыжком на возвышение', reps:8 } },
+      { name:'Приседания с выпрыгиванием', trackKey:'jump_squats', sets:[3,3,3,4], reps:[8,10,12,12], unit:'повт.',
+        advanced:{ name:'Приседания с прыжком на возвышение', reps:10 } },
+      { name:'Скалолаз (альпинист)', trackKey:'mountain_climbers', sets:[3,3,3,4], reps:[16,20,24,24], unit:'повт.' },
+      { name:'Планка с касанием плеч', trackKey:'shoulder_taps', sets:[3,3,3,4], reps:[16,20,24,24], unit:'повт.',
+        advanced:{ name:'Планка с касанием плеч + подъём ноги', reps:20 } },
+      { name:'Подъём ног в висе на турнике', trackKey:'hanging_leg_raises', sets:[3,3,3,4], reps:[6,8,10,12], unit:'повт.', bar:true,
+        advanced:{ name:'Подъём ног в висе до перекладины', reps:8 } },
     ]},
   { key:'mobility', title:'Гибкость и восстановление', emoji:'🧘', desc:'Лёгкий день — растяжка и дыхание',
     exercises:[
-      { name:'Растяжка ног и бёдер', sets:[1], reps:[300], unit:'сек' },
-      { name:'Растяжка спины и плеч', sets:[1], reps:[180], unit:'сек' },
-      { name:'Дыхательные упражнения', sets:[1], reps:[300], unit:'сек' },
+      { name:'Растяжка ног и бёдер', trackKey:'stretch_legs', sets:[1], reps:[300], unit:'сек' },
+      { name:'Растяжка спины и плеч', trackKey:'stretch_back', sets:[1], reps:[180], unit:'сек' },
+      { name:'Дыхательные упражнения', trackKey:'breathing', sets:[1], reps:[300], unit:'сек' },
     ]},
   { key:'rest', title:'Активный отдых', emoji:'🚶', desc:'Прогулка 20–30 минут в спокойном темпе',
     exercises:[
-      { name:'Прогулка на свежем воздухе', sets:[1], reps:[1200], unit:'сек' },
-      { name:'Лёгкая растяжка всего тела', sets:[1], reps:[300], unit:'сек' },
+      { name:'Прогулка на свежем воздухе', trackKey:'walk', sets:[1], reps:[1200], unit:'сек' },
+      { name:'Лёгкая растяжка всего тела', trackKey:'stretch_full', sets:[1], reps:[300], unit:'сек' },
     ]},
 ];
 
-const LEVEL_LABELS = ['База (1–2 нед.)','Развитие (3–4 нед.)','Рост (5–6 нед.)','Поддержание (7+ нед.)'];
+const LEVEL_LABELS = ['База (1–2 нед.)','Развитие (3–4 нед.)','Рост (5–6 нед.)','Сила и рельеф (7+ нед.)'];
+const MAX_LEVEL = 3;
+
+// Human-friendly labels for the totals screen, keyed by trackKey
+const TRACK_LABELS = {
+  pushups_classic:'Отжимания классические', pushups_narrow:'Отжимания узким хватом', pushups_wide:'Отжимания широким хватом',
+  plank_arms:'Планка на руках', dips_bar:'Отжимания на брусьях',
+  squats_classic:'Приседания классические', lunges:'Выпады', squats_sumo:'Приседания сумо', calf_raises:'Подъём на носки',
+  situps:'Скручивания', plank_core:'Планка (пресс)', leg_raises:'Подъём ног лёжа', russian_twist:'Русский твист',
+  superman:'Супермен', boat_hold:'Лодочка', chair_dips:'Отжимания от стула', glute_bridge:'Ягодичный мостик',
+  pullups:'Подтягивания', bar_hang:'Вис на турнике',
+  burpees:'Бёрпи', jump_squats:'Приседания с выпрыгиванием', mountain_climbers:'Скалолаз', shoulder_taps:'Планка с касаниями',
+  hanging_leg_raises:'Подъём ног в висе'
+};
+const TIME_KEYS = new Set(['plank_arms','boat_hold','plank_core','bar_hang','stretch_legs','stretch_back','breathing','walk','stretch_full']);
+
+/* ---------------- ACHIEVEMENTS ---------------- */
+
+function familySum(state, keys){
+  return keys.reduce((s,k)=> s + (state.totals[k]||0), 0);
+}
+
+const ACHIEVEMENTS = [
+  { id:'first_workout', icon:'🎬', title:'Первый блин не комом', desc:'Заверши первую тренировку',
+    check:s=> s.totalWorkouts>=1 },
+  { id:'workouts_10', icon:'🧱', title:'Не сдулся', desc:'10 тренировок',
+    check:s=> s.totalWorkouts>=10 },
+  { id:'workouts_25', icon:'🔩', title:'Втянулся', desc:'25 тренировок',
+    check:s=> s.totalWorkouts>=25 },
+  { id:'workouts_50', icon:'🏗️', title:'Дивана больше не существует', desc:'50 тренировок',
+    check:s=> s.totalWorkouts>=50 },
+  { id:'workouts_100', icon:'🏆', title:'Легенда района', desc:'100 тренировок',
+    check:s=> s.totalWorkouts>=100 },
+  { id:'streak_3', icon:'🔥', title:'Разогрелся', desc:'3 дня подряд',
+    check:s=> s.streak>=3 },
+  { id:'streak_7', icon:'📅', title:'Неделя без нытья', desc:'7 дней подряд',
+    check:s=> s.streak>=7 },
+  { id:'streak_14', icon:'🚀', title:'Уже не отмажешься', desc:'14 дней подряд',
+    check:s=> s.streak>=14 },
+  { id:'streak_30', icon:'👑', title:'Месяц железной воли', desc:'30 дней подряд',
+    check:s=> s.streak>=30 },
+  { id:'level_1', icon:'📈', title:'Прокачка пошла', desc:'Достиг уровня «Развитие»',
+    check:s=> s.level>=1 },
+  { id:'level_2', icon:'💥', title:'Мясо появляется', desc:'Достиг уровня «Рост»',
+    check:s=> s.level>=2 },
+  { id:'level_3', icon:'🧗', title:'Потолок пробит', desc:'Открыл сложные варианты упражнений',
+    check:s=> s.level>=3 },
+  { id:'bar_first', icon:'🤸', title:'Дошёл до перекладины', desc:'Первая тренировка с турником/брусьями',
+    check:s=> !!s.barEverUsed },
+  { id:'weighted_mode', icon:'🎒', title:'Рюкзак — не только для книг', desc:'Впервые включил утяжеление',
+    check:s=> !!s.weightEverUsed },
+  { id:'measure_first', icon:'📏', title:'Рулетка в деле', desc:'Первый замер тела',
+    check:s=> s.measurements.length>=1 },
+  { id:'pushups_100', icon:'💪', title:'Руки-базуки', desc:'100 отжиманий всего',
+    check:s=> familySum(s,['pushups_classic','pushups_narrow','pushups_wide','dips_bar','chair_dips'])>=100 },
+  { id:'pushups_500', icon:'💪', title:'Руки-базуки Pro', desc:'500 отжиманий всего',
+    check:s=> familySum(s,['pushups_classic','pushups_narrow','pushups_wide','dips_bar','chair_dips'])>=500 },
+  { id:'pushups_1500', icon:'🦾', title:'Терминатор отжиманий', desc:'1500 отжиманий всего',
+    check:s=> familySum(s,['pushups_classic','pushups_narrow','pushups_wide','dips_bar','chair_dips'])>=1500 },
+  { id:'squats_300', icon:'🦵', title:'Ноги-колонны', desc:'300 приседаний всего',
+    check:s=> familySum(s,['squats_classic','squats_sumo','lunges','jump_squats'])>=300 },
+  { id:'squats_1500', icon:'🏛️', title:'Ходят легенды о твоих ногах', desc:'1500 приседаний/выпадов всего',
+    check:s=> familySum(s,['squats_classic','squats_sumo','lunges','jump_squats'])>=1500 },
+  { id:'pullups_50', icon:'🧗‍♂️', title:'Турникмен', desc:'50 подтягиваний всего',
+    check:s=> familySum(s,['pullups'])>=50 },
+  { id:'pullups_150', icon:'👊', title:'Царь перекладины', desc:'150 подтягиваний всего',
+    check:s=> familySum(s,['pullups'])>=150 },
+  { id:'core_1000', icon:'🔥', title:'Кубики грузятся', desc:'1000 повторений на пресс всего',
+    check:s=> familySum(s,['situps','leg_raises','russian_twist','hanging_leg_raises'])>=1000 },
+];
 
 /* ---------------- STATE ---------------- */
 
 const DEFAULT_STATE = {
-  cycleDay: 1,      // 1..7, maps to DAY_TYPES index (0..6)
-  level: 0,         // 0..3
+  cycleDay: 1,
+  level: 0,
   totalWorkouts: 0,
   streak: 0,
   lastCompletedDate: null,
-  history: [],       // { date, dayKey, dayTitle }
-  weights: [],        // { date, kg }
-  todayProgress: {},  // { exIndex: [bool,...] }, reset each new day
-  barMode: false       // турник/брусья доступны сегодня, reset each new day
+  history: [],
+  weights: [],
+  measurements: [],
+  todayProgress: {},
+  barMode: false,
+  weightToday: false,
+  barEverUsed: false,
+  weightEverUsed: false,
+  easyStreak: 0,
+  totals: {},
+  achievementsUnlocked: []
 };
 
 function loadState(){
@@ -316,7 +495,6 @@ let state = loadState();
 
 function todayStr(){ return new Date().toISOString().slice(0,10); }
 
-// reset today's checkboxes if it's a new calendar day since last open
 (function ensureFreshDay(){
   const openKey = 'forma_last_open_date';
   const last = localStorage.getItem(openKey);
@@ -324,10 +502,21 @@ function todayStr(){ return new Date().toISOString().slice(0,10); }
   if(last !== t){
     state.todayProgress = {};
     state.barMode = false;
+    state.weightToday = false;
     localStorage.setItem(openKey, t);
     saveState();
   }
 })();
+
+/* ---------------- EFFECTIVE EXERCISE (handles advanced-variant swap) ---------------- */
+
+function effectiveExercise(ex, levelIdx){
+  const useAdvanced = levelIdx >= MAX_LEVEL && ex.advanced;
+  const setsCount = ex.sets[Math.min(levelIdx, ex.sets.length-1)];
+  const targetValue = useAdvanced ? ex.advanced.reps : ex.reps[Math.min(levelIdx, ex.reps.length-1)];
+  const displayName = useAdvanced ? ex.advanced.name : ex.name;
+  return { displayName, setsCount, targetValue, isAdvanced: !!useAdvanced, isTime: ex.unit === 'сек', trackKey: ex.trackKey, bar: !!ex.bar };
+}
 
 /* ---------------- RENDER: TODAY ---------------- */
 
@@ -337,43 +526,41 @@ function currentDayType(){
 
 function renderToday(){
   const day = currentDayType();
-  const isTracked = day.exercises[0].sets.length > 1;
-  const levelIdx = Math.min(state.level, 3);
+  const levelIdx = Math.min(state.level, MAX_LEVEL);
   const hasBarOptions = day.exercises.some(ex=>ex.bar);
   const visibleExercises = day.exercises
-    .map((ex,i)=>({ex,i}))
+    .map((ex,i)=>({ex,i, eff: effectiveExercise(ex, levelIdx)}))
     .filter(({ex})=> !ex.bar || state.barMode);
 
-  let exHtml = visibleExercises.map(({ex, i})=>{
-    const setsCount = ex.sets[Math.min(levelIdx, ex.sets.length-1)];
-    const repsVal = ex.reps[Math.min(levelIdx, ex.reps.length-1)];
-    const done = state.todayProgress[i] || Array(setsCount).fill(false);
-    const isTime = ex.unit === 'сек';
-    const targetLabel = isTime ? `${repsVal} сек × ${setsCount} подх.` : `${repsVal} повт. × ${setsCount} подх.`;
+  let exHtml = visibleExercises.map(({ex, i, eff})=>{
+    const done = state.todayProgress[i] || Array(eff.setsCount).fill(false);
+    const targetLabel = eff.isTime
+      ? `${eff.targetValue} сек × ${eff.setsCount} подх.`
+      : `${eff.targetValue} повт. × ${eff.setsCount} подх.`;
     let setsHtml = '';
-    for(let s=0; s<setsCount; s++){
+    for(let s=0; s<eff.setsCount; s++){
       setsHtml += `<div class="set-btn ${done[s]?'done':''}" data-ex="${i}" data-set="${s}">${done[s]?'✓':s+1}</div>`;
     }
     return `
-      <div class="ex">
+      <div class="ex ${eff.isAdvanced?'advanced':''}">
         <div class="ex-head">
           <div>
-            <div class="ex-name">${ex.name}</div>
-            <div class="ex-target">${targetLabel}</div>
+            <div class="ex-name">${eff.displayName}${eff.isAdvanced?'<span class="adv-tag">СЛОЖНЕЕ</span>':''}${ex.bar?'<span class="bar-tag">турник</span>':''}</div>
+            <div class="ex-target">${targetLabel}${state.weightToday && !eff.isTime ? ' · 🎒 с утяжелением' : ''}</div>
           </div>
-          ${setsCount>1 ? `<button class="rest-btn" data-rest="45">⏱ отдых</button>` : ''}
+          ${eff.setsCount>1 ? `<button class="rest-btn" data-rest="45">⏱ отдых</button>` : ''}
         </div>
         <div class="sets">${setsHtml}</div>
       </div>`;
   }).join('');
 
-  const allDone = visibleExercises.every(({ex,i})=>{
-    const setsCount = ex.sets[Math.min(levelIdx, ex.sets.length-1)];
+  const allDone = visibleExercises.every(({i, eff})=>{
     const done = state.todayProgress[i] || [];
-    return done.filter(Boolean).length >= setsCount;
+    return done.filter(Boolean).length >= eff.setsCount;
   });
 
   const completedToday = state.lastCompletedDate === todayStr();
+  const showWeightSuggestion = levelIdx>=MAX_LEVEL && !state.weightToday && state.easyStreak>=3 && !completedToday;
 
   document.getElementById('screen-today').innerHTML = `
     <div class="card today-hero">
@@ -381,15 +568,26 @@ function renderToday(){
       <span class="level-pill">${LEVEL_LABELS[levelIdx]}</span>
       <div class="day-type">${day.emoji} ${day.title}</div>
       <div class="day-meta">${day.desc}</div>
-      ${hasBarOptions ? `
+      <div class="toggle-row">
+        ${hasBarOptions ? `
         <label class="bar-toggle">
           <input type="checkbox" id="barToggle" ${state.barMode ? 'checked' : ''}>
           <span>🏗️ Сегодня дойду до турника/брусьев</span>
         </label>` : ''}
+        <label class="bar-toggle weight">
+          <input type="checkbox" id="weightToggle" ${state.weightToday ? 'checked' : ''}>
+          <span>🎒 Тренируюсь с утяжелением (рюкзак/бутылки)</span>
+        </label>
+      </div>
     </div>
+    ${showWeightSuggestion ? `
+    <div class="suggest-banner">
+      <div class="t">🎒 Похоже, тебе стало легко</div>
+      <div class="d">Несколько тренировок подряд на максимальном уровне ты закрываешь полностью. Пора добавить вес — включи утяжеление рюкзаком выше, чтобы продолжить расти в силе.</div>
+    </div>` : ''}
     ${exHtml}
     <button class="primary-btn" id="completeBtn" ${completedToday ? 'disabled' : ''}>
-      ${completedToday ? '✓ Тренировка завершена сегодня' : (allDone ? 'Завершить тренировку' : 'Завершить тренировку')}
+      ${completedToday ? '✓ Тренировка завершена сегодня' : 'Завершить тренировку'}
     </button>
     <div class="note" style="margin-top:12px;">
       Не обязательно отмечать всё, чтобы завершить день — организм сейчас может быть не в лучшей форме из-за стресса. Слушай себя, лучше меньше, но регулярно.
@@ -414,10 +612,21 @@ function renderToday(){
   if(barToggle){
     barToggle.addEventListener('change', ()=>{
       state.barMode = barToggle.checked;
+      if(barToggle.checked) state.barEverUsed = true;
       saveState();
+      checkAchievements();
       renderToday();
     });
   }
+
+  const weightToggle = document.getElementById('weightToggle');
+  weightToggle.addEventListener('change', ()=>{
+    state.weightToday = weightToggle.checked;
+    if(weightToggle.checked) state.weightEverUsed = true;
+    saveState();
+    checkAchievements();
+    renderToday();
+  });
 
   const completeBtn = document.getElementById('completeBtn');
   if(completeBtn && !completedToday){
@@ -428,6 +637,22 @@ function renderToday(){
 function completeWorkout(){
   const day = currentDayType();
   const t = todayStr();
+  const levelIdx = Math.min(state.level, MAX_LEVEL);
+
+  const visibleExercises = day.exercises
+    .map((ex,i)=>({ex,i, eff: effectiveExercise(ex, levelIdx)}))
+    .filter(({ex})=> !ex.bar || state.barMode);
+
+  // accumulate lifetime totals based on actually completed sets
+  let allFullyDone = true;
+  visibleExercises.forEach(({i, eff})=>{
+    const done = state.todayProgress[i] || [];
+    const completedSets = done.filter(Boolean).length;
+    if(completedSets < eff.setsCount) allFullyDone = false;
+    if(completedSets > 0){
+      state.totals[eff.trackKey] = (state.totals[eff.trackKey] || 0) + completedSets * eff.targetValue;
+    }
+  });
 
   // streak logic
   const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
@@ -440,16 +665,28 @@ function completeWorkout(){
   state.lastCompletedDate = t;
   state.totalWorkouts += 1;
   state.history.unshift({ date:t, dayKey:day.key, dayTitle:day.title });
-  state.history = state.history.slice(0, 60);
+  state.history = state.history.slice(0, 80);
+
+  // easy-streak tracking to drive the weighted-mode suggestion
+  if(levelIdx >= MAX_LEVEL && !state.weightToday){
+    state.easyStreak = allFullyDone ? state.easyStreak + 1 : 0;
+  } else {
+    state.easyStreak = 0;
+  }
 
   // advance cycle
   state.cycleDay = state.cycleDay >= 7 ? 1 : state.cycleDay + 1;
   if(state.cycleDay === 1){
-    state.level = Math.min(state.level + 1, 3);
+    state.level = Math.min(state.level + 1, MAX_LEVEL);
   }
 
   saveState();
-  showToast('Отлично! Тренировка сохранена 💪');
+  const newlyUnlocked = checkAchievements();
+  if(newlyUnlocked.length){
+    showToast(`🏆 Новая ачивка: ${newlyUnlocked[0].title}`, true);
+  } else {
+    showToast('Отлично! Тренировка сохранена 💪');
+  }
   renderToday();
   updateStreakBadge();
 }
@@ -480,9 +717,39 @@ document.getElementById('restSkip').addEventListener('click', ()=>{
   document.getElementById('restOverlay').classList.remove('show');
 });
 
-/* ---------------- PROGRESS SCREEN ---------------- */
+/* ---------------- ACHIEVEMENTS LOGIC ---------------- */
 
-function renderProgress(){
+function checkAchievements(){
+  const newly = [];
+  ACHIEVEMENTS.forEach(a=>{
+    if(!state.achievementsUnlocked.includes(a.id) && a.check(state)){
+      state.achievementsUnlocked.push(a.id);
+      newly.push(a);
+    }
+  });
+  if(newly.length) saveState();
+  return newly;
+}
+
+function renderAchievements(){
+  const unlockedCount = state.achievementsUnlocked.length;
+  document.getElementById('achProgress').textContent = `Открыто ${unlockedCount} из ${ACHIEVEMENTS.length}`;
+  document.getElementById('achGrid').innerHTML = ACHIEVEMENTS.map(a=>{
+    const unlocked = state.achievementsUnlocked.includes(a.id);
+    return `
+      <div class="ach ${unlocked?'unlocked':''}">
+        <div class="icon">${unlocked ? a.icon : '🔒'}</div>
+        <div class="txt">
+          <b>${a.title}</b>
+          <span>${a.desc}</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+/* ---------------- BODY SCREEN: weight, measurements, totals, history ---------------- */
+
+function renderBody(){
   document.getElementById('statTotal').textContent = state.totalWorkouts;
   document.getElementById('statStreak').textContent = state.streak;
   document.getElementById('statWeek').textContent = LEVEL_LABELS[state.level].split(' ')[0];
@@ -514,6 +781,9 @@ function renderProgress(){
   } else {
     note.textContent = 'Добавь пару замеров, чтобы увидеть динамику.';
   }
+
+  renderMeasurements();
+  renderTotals();
 }
 
 function formatDate(d){
@@ -580,8 +850,83 @@ document.getElementById('addWeightBtn').addEventListener('click', ()=>{
   saveState();
   input.value = '';
   showToast('Вес сохранён');
-  renderProgress();
+  renderBody();
 });
+
+function renderMeasurements(){
+  const reminderEl = document.getElementById('measReminder');
+  if(state.measurements.length === 0){
+    reminderEl.innerHTML = `<div class="note" style="margin-bottom:10px;">Ещё не было замеров — сними первые, чтобы отслеживать рельеф.</div>`;
+  } else {
+    const last = state.measurements[state.measurements.length-1];
+    const daysSince = Math.floor((Date.now() - new Date(last.date).getTime()) / 86400000);
+    if(daysSince >= 28){
+      reminderEl.innerHTML = `<div class="note" style="margin-bottom:10px;"><b>Пора обновить замеры</b> — последние были ${daysSince} дн. назад.</div>`;
+    } else {
+      reminderEl.innerHTML = `<div class="note" style="margin-bottom:10px;">Последние замеры: ${daysSince} дн. назад. Следующие — примерно через ${28-daysSince} дн.</div>`;
+    }
+  }
+
+  const histEl = document.getElementById('measHistory');
+  if(state.measurements.length === 0){
+    histEl.innerHTML = '';
+    return;
+  }
+  const rows = state.measurements.slice(-6).reverse().map(m=>
+    `<div class="meas-row"><span>${formatDate(m.date)}</span><span>${m.waist ?? '—'}</span><span>${m.chest ?? '—'}</span><span>${m.arms ?? '—'}</span></div>`
+  ).join('');
+  histEl.innerHTML = `
+    <div class="meas-row"><span>Дата</span><span>Талия</span><span>Грудь</span><span>Руки</span></div>
+    ${rows}
+  `;
+}
+
+document.getElementById('addMeasBtn').addEventListener('click', ()=>{
+  const waist = parseFloat(document.getElementById('measWaist').value) || null;
+  const chest = parseFloat(document.getElementById('measChest').value) || null;
+  const arms = parseFloat(document.getElementById('measArms').value) || null;
+  if(!waist && !chest && !arms){ showToast('Заполни хотя бы одно поле'); return; }
+  const t = todayStr();
+  const existing = state.measurements.find(m=>m.date===t);
+  if(existing){ Object.assign(existing, { waist, chest, arms }); }
+  else state.measurements.push({ date:t, waist, chest, arms });
+  saveState();
+  const newly = checkAchievements();
+  document.getElementById('measWaist').value = '';
+  document.getElementById('measChest').value = '';
+  document.getElementById('measArms').value = '';
+  showToast(newly.length ? `🏆 Новая ачивка: ${newly[0].title}` : 'Замеры сохранены', !!newly.length);
+  renderMeasurements();
+});
+
+function formatTotalValue(key, val){
+  if(TIME_KEYS.has(key)){
+    if(val >= 3600) return `${Math.round(val/3600)} ч`;
+    if(val >= 60) return `${Math.round(val/60)} мин`;
+    return `${val} сек`;
+  }
+  return val.toLocaleString('ru-RU');
+}
+
+function renderTotals(){
+  const groups = DAY_TYPES.filter(d=>d.key!=='mobility' && d.key!=='rest');
+  const html = groups.map(day=>{
+    const chips = day.exercises
+      .filter(ex => (state.totals[ex.trackKey] || 0) > 0)
+      .map(ex=>{
+        const val = state.totals[ex.trackKey] || 0;
+        return `<div class="total-chip"><b>${formatTotalValue(ex.trackKey, val)}</b><span>${TRACK_LABELS[ex.trackKey] || ex.name}</span></div>`;
+      }).join('');
+    if(!chips) return '';
+    return `
+      <div>
+        <div class="totals-group-title">${day.emoji} ${day.title}</div>
+        <div class="totals-list">${chips}</div>
+      </div>`;
+  }).filter(Boolean).join('');
+
+  document.getElementById('totalsGrid').innerHTML = html || '<div class="empty">Пока пусто — заверши первую тренировку</div>';
+}
 
 /* ---------------- PLAN SCREEN ---------------- */
 
@@ -592,9 +937,9 @@ function renderPlan(){
       <div class="note">
         Цикл из <b>7 дней</b>, каждый день — свой акцент, чтобы мышцы успевали восстанавливаться.
         Каждый полный цикл нагрузка растёт: <b>${LEVEL_LABELS.join(' → ')}</b>.
+        На максимальном уровне часть упражнений заменяется на более сложные варианты (отмечены значком «СЛОЖНЕЕ») —
+        так сила продолжает расти, даже без нового инвентаря.
         Сейчас ты на уровне: <b>${LEVEL_LABELS[state.level]}</b>.
-        Основа — только своё тело. В дни рук и спины есть бонусные упражнения на турнике/брусьях —
-        включаются переключателем, когда ты рядом с площадкой.
       </div>
     </div>
     ${DAY_TYPES.map((d,i)=>`
@@ -609,7 +954,9 @@ function renderPlan(){
       <div class="card-title">Заметка</div>
       <div class="note">
         Вес упал с 69 до 64 кг за неделю — это, скорее всего, реакция на стресс, а не потеря жира.
-        Программа сделана умеренной: цель — вернуть тонус и стабильность, а не загонять себя.
+        Программа держит умеренный старт, но на верхних уровнях специально нагружает сильнее —
+        цель одновременно вернуть тонус и рельеф, и прибавить в силе.
+        Турник/брусья и рюкзак с весом — опциональные усилители, включаются переключателями на экране «Сегодня».
         Если вес продолжит снижаться без видимой причины — сходи к врачу.
       </div>
     </div>
@@ -624,18 +971,20 @@ document.querySelectorAll('.tab').forEach(tab=>{
     document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById('screen-'+tab.dataset.screen).classList.add('active');
-    if(tab.dataset.screen === 'progress') renderProgress();
+    if(tab.dataset.screen === 'body') renderBody();
+    if(tab.dataset.screen === 'achievements') renderAchievements();
     if(tab.dataset.screen === 'plan') renderPlan();
   });
 });
 
 let toastTimeout;
-function showToast(msg){
+function showToast(msg, gold){
   const t = document.getElementById('toast');
   t.textContent = msg;
+  t.classList.toggle('gold', !!gold);
   t.classList.add('show');
   clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(()=> t.classList.remove('show'), 2200);
+  toastTimeout = setTimeout(()=> t.classList.remove('show'), 2600);
 }
 
 function updateStreakBadge(){
@@ -644,6 +993,7 @@ function updateStreakBadge(){
 
 /* ---------------- INIT ---------------- */
 
+checkAchievements();
 renderToday();
 updateStreakBadge();
 
